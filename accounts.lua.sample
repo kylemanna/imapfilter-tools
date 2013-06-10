@@ -1,0 +1,12 @@
+-- [[ GNOME Keyring example via Python --]]
+server = 'your.mail.server.here'
+keyring = os.getenv("HOME") .. '/.imapfilter/wrapper.py'
+status, user = pipe_single('', keyring, 'keyring', 'get', server, 'user')
+status, password = pipe_single('', keyring, 'keyring', 'get', server, 'password')
+
+account1 = IMAP {
+	server = server,
+	username = trim(user),
+	password = trim(password),
+	ssl = 'ssl3',
+}
