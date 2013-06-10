@@ -135,7 +135,6 @@ if __name__ == '__main__':
 
         keyring_action = sys.argv[2]
         server = sys.argv[3]
-        key = sys.argv[4]
 
         keyring = Keyring('IMAP Filter ' + server, server, 'imap')
 
@@ -145,6 +144,7 @@ if __name__ == '__main__':
             keyring.set_credentials((user, secret))
         elif keyring_action == 'get':
             user, secret = keyring.get_credentials()
+            key = sys.argv[4]
             if key == 'password':
                 print secret
             else:
