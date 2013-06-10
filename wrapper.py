@@ -136,6 +136,10 @@ if __name__ == '__main__':
         keyring_action = sys.argv[2]
         server = sys.argv[3]
 
+        # Modify env to use cached dbus-session address
+        with open(os.environ['HOME'] + '/.dbus-session') as f:
+            os.environ['DBUS_SESSION_BUS_ADDRESS'] = f.read().strip()
+
         keyring = Keyring('IMAP Filter ' + server, server, 'imap')
 
         if keyring_action == 'set':
