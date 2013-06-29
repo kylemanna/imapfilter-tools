@@ -171,6 +171,11 @@ function forever()
 		-- case it will have to wait until another email arrives.
 		if #unfiltered:is_unseen() == 0 then
 			local update = unfiltered:enter_idle()
+
+			-- Sleep 60 seconds if IDLE isn't supported
+			if update == false then
+				posix.sleep(60)
+			end
 		end
 	end
 end
