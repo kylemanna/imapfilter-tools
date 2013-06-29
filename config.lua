@@ -186,6 +186,7 @@ end
 ---------------
 
 options.timeout = 120
+options.keepalive = 5
 --options.subscribe = true
 
 
