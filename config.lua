@@ -116,7 +116,7 @@ end
 --
 function forever()
 
-	max_filter_size = 1024 * 256 -- 256 KB
+	max_filter_size = 1024 * 1024 -- 1024 KB
 
 	account1:create_mailbox('Spam')
 	account1:create_mailbox('Spam/False Positives')
