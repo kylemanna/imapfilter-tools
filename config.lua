@@ -30,8 +30,10 @@ function filter(results)
 
 	for subresults, msgs in iter_msgs(results, subresult_cnt) do
 
-		-- Filter it through spamassassin
-		local status, allmsg = pipe_multi(msgs, max_procs, 'spamc')
+		-- Filter it through spamassassin, avoid spamc due to localized
+		-- user_perfs and bayes stores owned by this user.  This results
+		-- in a minor performance hit (latency) when compared to spamd+spamc.
+		local status, allmsg = pipe_multi(msgs, max_procs, 'spamassassin')
 
 		for _, msg in pairs(allmsg) do
 			-- TODO Why doesn't the following work?
